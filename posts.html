@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Postlar — Mini Blog</title>
+    <meta name="description" content="JSONPlaceholder API-dən gələn postlar — mini blog layihəsi" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header__inner">
+            <div class="logo">
+                <span class="logo__icon">📝</span>
+                <span class="logo__text">MiniBlog</span>
+            </div>
+            <nav class="nav">
+                <span class="nav__count" id="postCount">0 post</span>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero__title">Son Postlar</h1>
+            <p class="hero__subtitle">JSONPlaceholder API-dən real-vaxt məlumat</p>
+
+            <!-- Search -->
+            <div class="search-box">
+                <svg class="search-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                </svg>
+                <input type="text" id="searchInput" class="search-box__input" placeholder="Post axtar..."
+                    autocomplete="off" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+
+            <!-- Loading State -->
+            <div class="loader" id="loader">
+                <div class="loader__spinner"></div>
+                <p class="loader__text">Postlar yüklənir...</p>
+            </div>
+
+            <!-- Error State -->
+            <div class="error-state" id="errorState" style="display:none;">
+                <span class="error-state__icon">⚠️</span>
+                <p class="error-state__text" id="errorText">Xəta baş verdi</p>
+                <button class="btn btn--primary" id="retryBtn">Yenidən cəhd et</button>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display:none;">
+                <span class="empty-state__icon">🔍</span>
+                <p class="empty-state__text">Heç bir post tapılmadı</p>
+            </div>
+
+            <!-- Posts Grid -->
+            <div class="posts-grid" id="postsGrid"></div>
+        </div>
+    </main>
+
+    <!-- Post Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modal">
+            <button class="modal__close" id="modalClose" aria-label="Bağla">&times;</button>
+            <div class="modal__body">
+                <span class="modal__user-badge" id="modalUser"></span>
+                <h2 class="modal__title" id="modalTitle"></h2>
+                <p class="modal__content" id="modalBody"></p>
+
+                <div class="modal__comments-section">
+                    <h3 class="modal__comments-heading">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20"
+                            height="20">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                        Şərhlər
+                    </h3>
+                    <div class="modal__comments-loader" id="commentsLoader">
+                        <div class="loader__spinner loader__spinner--sm"></div>
+                    </div>
+                    <div class="modal__comments-list" id="commentsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Məlumat mənbəyi: <a href="https://jsonplaceholder.typicode.com" target="_blank"
+                    rel="noopener">JSONPlaceholder</a></p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
